@@ -1,13 +1,39 @@
 body {
   background: #eee;
   margin: 1rem;
+  padding: 0;
+  box-sizing: border-box;
   font-family: monospace;
 }
 
 .App {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-rows: auto 1fr;
+  gap: 0.1rem 1rem;
+  grid-template-areas:
+    "title1 title2"
+    "editor preview";
+}
+
+textarea {
+  resize: none;
+}
+
+#h1-1 {
+  grid-area: title1;
+}
+
+#h1-2 {
+  grid-area: title2;
+}
+
+#editor {
+  grid-area: editor;
+}
+
+#preview {
+  grid-area: preview;
 }
 
 #editor,
@@ -15,7 +41,16 @@ body {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 10px;
-  height: 95vh;
-  width: auto;
-  max-width: 50vw;
+}
+
+@media only screen and (max-width: 768px) {
+  .App {
+    grid-template-areas:
+      "title1"
+      "editor"
+      "title2"
+      "preview";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 35vh auto auto;
+  }
 }
